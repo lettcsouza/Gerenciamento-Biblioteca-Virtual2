@@ -1,34 +1,50 @@
 public class LibrarySystem {
     public static void main(String[] args) {
-        LinkedList library = new LinkedList();
+        Graph bookGraph = new Graph();
 
-        library.addBook("As Aventuras de Pi", "Yann Martel", 2001);
-        library.addBook("A Incoveniente Loja de Conveniência", "Kim Ho-yeon", 2023);
-        library.addBook("O Colecionador", "John Fowles", 1963);
+        // criando livros
+        Book b1 = new Book("As Aventuras de Pi", "Yann Martel", 2001);
+        Book b2 = new Book("O Colecionador", "John Fowles", 1963);
+        Book b3 = new Book("Dracula", "Bram Stoker", 1897);
+        Book b4 = new Book("Bem-vindos à livraria Hyunam-dong", "Hwang Bo-Reum", 2023);
+        Book b5 = new Book("A inconveniente loja de conveniência", "Kim Ho-Yeon", 2023);
+        Book b6 = new Book("Príncipe Lestat", "Anne Rice", 2014);
+        Book b7 = new Book("Crepúsculo", "Stephenie Meyer", 2005);
+        Book b8 = new Book("Crime e Castigo", "Fiódor Dostoiévski", 1866);
+        Book b9 = new Book("Antes que o café esfrie", "Toshikazu Kawaguchi", 2022);
+        Book b10 = new Book("Anna Karerina", "Liev Tolstói", 1878);
 
-        System.out.println("books in the library:");
-        library.displayBooks();
-    
-        System.out.println("\n----------------\n");
+        // colocando livros no grafo
+        bookGraph.addBook(b1);
+        bookGraph.addBook(b2);
+        bookGraph.addBook(b3);
+        bookGraph.addBook(b4);
+        bookGraph.addBook(b5);
+        bookGraph.addBook(b6);
+        bookGraph.addBook(b7);
+        bookGraph.addBook(b8);
+        bookGraph.addBook(b9);
+        bookGraph.addBook(b10);
 
-        BookQueue bookQueue = new BookQueue();
-        BookHistory bookHistory = new BookHistory();
+        // criando recomendações (arestas = conexões)
+        bookGraph.addRecommendation(b4, b5);
+        bookGraph.addRecommendation(b3, b8);
+        bookGraph.addRecommendation(b2, b3);
+        bookGraph.addRecommendation(b1, b4);
+        bookGraph.addRecommendation(b3, b7);
+        bookGraph.addRecommendation(b3, b6);
+        bookGraph.addRecommendation(b6, b7);
+        bookGraph.addRecommendation(b4, b9);
+        bookGraph.addRecommendation(b5, b9);
+        bookGraph.addRecommendation(b8, b10);
 
-        bookQueue.addToWaitList("Pedro");
-        bookQueue.addToWaitList("Gabo");
-        bookQueue.addToWaitList("Leleca");
+        // mostrando o grafo completo
+        System.out.println("📚 Library Book Graph:");
+        bookGraph.displayGraph();
 
-        bookQueue.displayWaitList();
-        bookQueue.serveNextUser(); //pedro recebe o livro
-        bookQueue.displayWaitList();
-
-        System.out.println("\n----------------\n");
-
-        bookHistory.addToHistory("As Aventuras de Pi");
-        bookHistory.addToHistory("A Inconveniente Loja de Conveniência");
-        bookHistory.addToHistory("O Colecionador");
-
-        bookHistory.displayHistory();
-        bookHistory.viewLastViewedBook();
+        // recomendações específicas
+        System.out.println("\n🔍 Recommendations:");
+        bookGraph.displayRecommendations(b3);
+        bookGraph.displayRecommendations(b5);
     }
 }
