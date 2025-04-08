@@ -18,8 +18,17 @@ public class Graph {
     public void displayRecommendations(Book book){
         if (bookGraph.containsKey(book)){
             System.out.println("Recommendations for " + book.getTitle() + ":");
-        }else{
-            System.out.println("Books not found.");
+            Set<Book> recommendations = bookGraph.get(book);
+
+            if (recommendations.isEmpty()){
+                System.out.println("No recommendations found!");
+            } else{
+                for (Book recommendedBook : recommendations){
+                    System.out.println("  - " + recommendedBook);
+                }
+            } 
+        } else{
+            System.out.println("Book not found!");
         }
     }
 

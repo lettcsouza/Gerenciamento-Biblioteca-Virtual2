@@ -39,11 +39,11 @@ public class LibrarySystem {
         bookGraph.addRecommendation(b8, b10);
 
         // mostrando o grafo completo
-        System.out.println("📚 Library Book Graph:");
+        System.out.println("Library Book Graph:");
         bookGraph.displayGraph();
 
         // recomendações específicas
-        System.out.println("\n🔍 Recommendations:");
+        System.out.println("--- Recommendations ---");
         bookGraph.displayRecommendations(b3);
         bookGraph.displayRecommendations(b5);
     }
