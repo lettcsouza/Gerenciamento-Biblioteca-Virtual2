@@ -1,6 +1,9 @@
+
+
 public class LibrarySystem {
     public static void main(String[] args) {
-        Graph bookGraph = new Graph();
+        //Graph bookGraph = new Graph();
+        BinarySearchTree tree = new BinarySearchTree();
 
         // criando livros
         Book b1 = new Book("As Aventuras de Pi", "Yann Martel", 2001);
@@ -14,7 +17,7 @@ public class LibrarySystem {
         Book b9 = new Book("Antes que o café esfrie", "Toshikazu Kawaguchi", 2022);
         Book b10 = new Book("Anna Karerina", "Liev Tolstói", 1878);
 
-        // colocando livros no grafo
+        /* colocando livros no grafo
         bookGraph.addBook(b1);
         bookGraph.addBook(b2);
         bookGraph.addBook(b3);
@@ -45,6 +48,20 @@ public class LibrarySystem {
         // recomendações específicas
         System.out.println("--- Recommendations ---");
         bookGraph.displayRecommendations(b3);
-        bookGraph.displayRecommendations(b5);
+        bookGraph.displayRecommendations(b5);*/
+
+        tree.insert(b1);
+        tree.insert(b2);
+        tree.insert(b3);
+        tree.insert(b4);
+        tree.insert(b5);
+        tree.insert(b6);
+        tree.insert(b7);
+        tree.insert(b8);
+        tree.insert(b9);
+        tree.insert(b10);
+
+        System.out.println("Books in alphabetical order, by title:");
+        tree.inOrderTraversal();
     }
 }
