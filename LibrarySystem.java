@@ -63,5 +63,12 @@ public class LibrarySystem {
 
         System.out.println("Books in alphabetical order, by title:");
         tree.inOrderTraversal();
+
+        //cabou aq 
+
+        System.err.println("Generating Books Names...");
+        String[] bookNames = BooksNamesGenerator.generateNames(20);
+
+    
     }
 }
