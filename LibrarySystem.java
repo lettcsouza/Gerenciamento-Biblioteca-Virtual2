@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 
 public class LibrarySystem {
     public static void main(String[] args) {
@@ -21,7 +21,7 @@ public class LibrarySystem {
         bookGraph.addBook(b1);
         bookGraph.addBook(b2);
         bookGraph.addBook(b3);
-        bookGraph.addBook(b4);
+        bookGraph.addBook(b4);dr
         bookGraph.addBook(b5);
         bookGraph.addBook(b6);
         bookGraph.addBook(b7);
@@ -64,11 +64,26 @@ public class LibrarySystem {
         System.out.println("Books in alphabetical order, by title:");
         tree.inOrderTraversal();
 
-        //cabou aq 
+        System.out.println("----------------------------");
 
-        System.err.println("Generating Books Names...");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("digite o titulo do livro que queira buscar: ");
+        String tituloBusca = scanner.nextLine();
+
+        boolean encontrado = DFS.searchByTitle(tree.getRoot(), tituloBusca);
+        if (!encontrado){
+            System.out.println("livro nao encontrado com dfs.");
+        }
+
+         /*System.out.println("Generating Books Names...");
         String[] bookNames = BooksNamesGenerator.generateNames(20);
 
-    
+        //ordenando com bubble
+        String[] bubbleSorted = BubbleSort.order(bookNames);
+        System.out.println("Comparações Bubble Sort: " + BubbleSort.comparacoes);
+
+        //ordenando com merge
+        String[] mergeSorted = MergeSort.order(bookNames);
+        System.out.println("Comparações Merge Sort: " + MergeSort.comparacoes);*/
     }
 }

@@ -28,4 +28,8 @@ public class BinarySearchTree {
             inOrderRec(node.right);
         }
     }
+
+    public TreeNode getRoot(){
+        return root;
+    }
 }

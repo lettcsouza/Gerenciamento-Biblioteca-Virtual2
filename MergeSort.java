@@ -1,6 +1,9 @@
 class MergeSort {
 
-    public static String[] ordenar(String[] oldArr) {
+    public static int comparacoes = 0;
+
+    public static String[] order(String[] oldArr) {
+        comparacoes = 0;
         String[] arr = oldArr.clone();
         if (arr.length < 2) {
 
@@ -13,8 +16,8 @@ class MergeSort {
         System.arraycopy(arr, 0, esquerda, 0, meio);
         System.arraycopy(arr, meio, direita, 0, arr.length - meio);
 
-        ordenar(esquerda);
-        ordenar(direita);
+        order(esquerda);
+        order(direita);
 
         merge(arr, esquerda, direita);
 
@@ -27,6 +30,7 @@ class MergeSort {
 
         while (i < esquerda.length && j < direita.length) {
 
+            comparacoes++;
             if (esquerda[i].compareTo(direita[j]) <= 0) {
 
                 arr[k++] = esquerda[i++];
