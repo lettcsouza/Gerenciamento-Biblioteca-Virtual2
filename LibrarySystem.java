@@ -1,9 +1,10 @@
+import java.util.Map;
 import java.util.Scanner;
 
 public class LibrarySystem {
     public static void main(String[] args) {
         //Graph bookGraph = new Graph();
-        BinarySearchTree tree = new BinarySearchTree();
+        Graph bookGraph = new Graph();
 
         // criando livros
         Book b1 = new Book("As Aventuras de Pi", "Yann Martel", 2001);
@@ -17,11 +18,11 @@ public class LibrarySystem {
         Book b9 = new Book("Antes que o café esfrie", "Toshikazu Kawaguchi", 2022);
         Book b10 = new Book("Anna Karerina", "Liev Tolstói", 1878);
 
-        /* colocando livros no grafo
+       //colocando livros no grafo
         bookGraph.addBook(b1);
         bookGraph.addBook(b2);
         bookGraph.addBook(b3);
-        bookGraph.addBook(b4);dr
+        bookGraph.addBook(b4);
         bookGraph.addBook(b5);
         bookGraph.addBook(b6);
         bookGraph.addBook(b7);
@@ -48,9 +49,9 @@ public class LibrarySystem {
         // recomendações específicas
         System.out.println("--- Recommendations ---");
         bookGraph.displayRecommendations(b3);
-        bookGraph.displayRecommendations(b5);*/
+        bookGraph.displayRecommendations(b5);
 
-        tree.insert(b1);
+        /*tree.insert(b1);
         tree.insert(b2);
         tree.insert(b3);
         tree.insert(b4);
@@ -62,11 +63,34 @@ public class LibrarySystem {
         tree.insert(b10);
 
         System.out.println("Books in alphabetical order, by title:");
-        tree.inOrderTraversal();
+        tree.inOrderTraversal();*/
 
         System.out.println("----------------------------");
 
         Scanner scanner = new Scanner(System.in);
+        System.out.println("digite o livro de origem para recomendação: ");
+        String tituloOrigem = scanner.nextLine();
+
+        Book livroOrigem = null;
+        for (Book livro : bookGraph.getBooks()){
+            if (livro.getTitle().equalsIgnoreCase(tituloOrigem)){
+                livroOrigem = livro;
+                break;
+            }
+        }
+
+        if (livroOrigem != null){
+            Map<Book, Integer> recommendations = bookGraph.dijkstrMap(livroOrigem);
+            System.out.println("\n--- Livros Recomendados: ---");
+            recommendations.entrySet()
+                           .stream()
+                           .sorted(Map.Entry.comparingByValue())
+                           .forEach(entry -> System.out.println("livro: " + entry.getKey().getTitle() + "| Distância: " + entry.getValue()));
+        } else{
+            System.out.println("livro nao encontrado.");
+        }
+
+        /*Scanner scanner = new Scanner(System.in);
         System.out.println("digite o titulo do livro que queira buscar: ");
         String tituloBusca = scanner.nextLine();
 
@@ -75,7 +99,12 @@ public class LibrarySystem {
             System.out.println("livro nao encontrado com dfs.");
         }
 
-         /*System.out.println("Generating Books Names...");
+        boolean encontrado = BFS.searchByTitle(tree.getRoot(), tituloBusca);
+        if (!encontrado){
+            System.out.println("livro nao encontrado com bfs.");
+        }
+
+        System.out.println("Generating Books Names...");
         String[] bookNames = BooksNamesGenerator.generateNames(20);
 
         //ordenando com bubble
